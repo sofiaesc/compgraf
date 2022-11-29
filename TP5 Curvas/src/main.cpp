@@ -59,8 +59,8 @@ void updateControlPointsAround(Spline &spline, int ctrl_pt) {
 		la curva a veces hace recorridos extra innecesarios
 		para lograr la suavidad. Sin embargo, se ve suave
 		y se puede formar un círculo sin que parezca polígono.
+		Además, no tiene overshooting.
 		Tiene continuidad geométrica.
-		¿OVERSHOOTING?
 	*/
 	// VARIACIONES DE VELOCIDAD:
 	/*  La curva se ve suave pero no se recorre suavemente,
@@ -74,9 +74,15 @@ void updateControlPointsAround(Spline &spline, int ctrl_pt) {
 		la distancia entre ctrl_pt-3 y ctrl_pt, mientras que
 		la de ctrl_pt+1 por la de ctrl_pt+3 y ctrl_pt.
 		Para evitar estas variaciones de velocidad, podría
-		comparar las distancias al punto ctrl_pt, y quedarme
-		con el punto calculado con la menor distancia para
-		definir ambos.
+		reparametrizar t de forma tal que vaya de 0 a 1 en 
+		toda la curva y el t en cada segmento de la spline 
+		esté calculado de acuerdo a su longitud: asigno a
+		cada punto un valor relacionado con su longitud de
+		arco (difícil de calcular, hay otras alternativas)
+		y voy sumándole las longitudes Li de los segmentos 
+		anteriores a cada uno. Luego, divido cada Li obtenido
+		por la longitud total y así obtengo mi t para cada
+		parte de la curva.
 	*/
 }
 
