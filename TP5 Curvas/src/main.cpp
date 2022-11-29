@@ -68,11 +68,12 @@ void updateControlPointsAround(Spline &spline, int ctrl_pt) {
 		con diferentes distancias. Cuando los puntos están
 		muy lejos, el pez va rápido. Cuando los puntos están
 		muy cerca, va lento. No tiene continuidad paramétrica.
-		Esto se debe a que, en cada tramo, la velocidad está
-		dada por la distancia entre los puntos anterior y
-		posterior. La velocidad de ctrl_pt-1 está dada por
-		la distancia entre ctrl_pt-3 y ctrl_pt, mientras que
-		la de ctrl_pt+1 por la de ctrl_pt+3 y ctrl_pt.
+		Esto se debe a que la t está parametrizada de 0 a 1
+		con el mismo valor para todos los segmentos aunque 
+		estos tengan distintas longitudes. Entonces, un
+		segmento corto va a recorrerse muy lento y uno largo
+		va a buscar llegar rápido al tiempo final en todo
+		el recorrido.
 		Para evitar estas variaciones de velocidad, podría
 		reparametrizar t de forma tal que vaya de 0 a 1 en 
 		toda la curva y el t en cada segmento de la spline 
